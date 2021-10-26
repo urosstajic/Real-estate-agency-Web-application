@@ -1,0 +1,37 @@
+<div class="sidebar"><br>
+   <a (click)="prikaziLogin()" style="background-color:rgb(70, 69, 69) ;">
+       <span>
+        Login
+       </span>
+   </a>
+   <!--<a (click)="reg()">
+    <span>
+     Registracija
+    </span>
+    </a>-->
+   <a (click)="prikaziNekr()">
+    <span>
+     Pretrazi nekretnine
+    </span>
+</a>
+</div>
+<!--<div class="sidenav">
+    <h3 (click)="prikaziLogin()" style="color: white;">LOGIN</h3>
+    <h3 (click)="prikaziNekr()" style="color: white;">Pretrazi nekretnine</h3>
+</div>-->
+<div class="main"><br><br><br>
+    <div class="form-style-6">
+        <h1>Log in</h1>
+        <form ngNativeValidate #forma2>
+        <input type="text" name="username" placeholder="Unesite korisnicko ime" [(ngModel)]="username" required>
+        <input type="password" name="password" placeholder="Unesite lozinku" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+         <button type="submit" (click)="forma2.checkValidity()?login():null">Log in</button>
+        </form>
+        <br>
+    Nemate nalog?<br>
+    <a routerLink="registracija">Registrujte se</a>
+        </div>
+
+
+</div>
+

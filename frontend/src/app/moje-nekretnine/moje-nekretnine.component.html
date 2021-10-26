@@ -1,0 +1,234 @@
+<div *ngIf="user.tip=='radnik'">
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Odobri
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Prikazi sve
+        </span>
+    </a><a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main">
+    <div style="padding: 15px;border-bottom: 1px solid #ddd;display: flex;justify-content: center;font-size: medium;border-top: 1px solid #ddd;margin-top: 8px;">
+    <table>
+        <tr>
+            <td>Naziv nekretnine</td>
+        </tr>
+        <tr *ngFor="let mm of mojeNekretnine">
+            <td>{{mm.naziv}}</td>
+            <td>
+                <button (click)="izmeni(mm)">Izmeni</button>
+            </td>
+        </tr>
+    </table>
+</div><br>
+<div class="form-style-6" *ngIf="izmena==1">
+    <h1>Azuriraj podatke - {{kojaZaIzmenu.naziv}}</h1>
+    <form>
+    <input type="text" placeholder="Unesite novi naziv nekretnine" name="naziv" [(ngModel)]="naziv">
+    <input type="text" placeholder="Unesite novi grad adrese" name="adresa" [(ngModel)]="drzava">
+    <input type="text" placeholder="Unesite novi deo grada adrese" name="grad" [(ngModel)]="grad">
+    <input type="text" name="adresa" [(ngModel)]="ulica" placeholder="Unesite novu ulicu adrese">
+    <label for="tip">Izaberite da li je nekretnina stan ili kuca</label>
+    <select [(ngModel)]="tip" name="tip" id="tip">
+        <option value="kuca">kuca</option>
+        <option value="stan">stan</option>
+    </select>
+    <input type="text" [(ngModel)]="sprat" name="sprat" placeholder="Unesite novi sprat">
+    <input type="text" [(ngModel)]="spratovnost" name="spratovnost" placeholder="Unesite novi ukupan broj spratova"  *ngIf="kojaZaIzmenu.tip=='stan'">
+    <input type="number" [(ngModel)]="kvadratura" name="kvadratura" placeholder="Unesite novu kvadraturu">
+    <input type="text" name="br_soba" [(ngModel)]="brsoba" placeholder="Unesite novi broj soba u tekstualnom formatu">
+    <label for="nam">Izaberite da li je stan namesten ili ne</label>
+    <select [(ngModel)]="namesten" name="namesten" id="nam">
+        <option value="namesten">namesten</option>
+        <option value="nenamesten">nenamesten</option>
+        <option value="polunamesten">polunamesten</option>
+    </select>
+    Da li zelite da dodate nove slike nekretnini? <button (click)="dodajNove()">DA</button><br>
+    <input type="file" multiple id="idfajla" name="gal" accept="image/jpg, image/pgn, image/jpeg, video/mp4" [(ngModel)]='galerija' *ngIf="dodajN==1">
+    <br>Da li zelite da uklonite stare i dodate nove slike nekretnine?<button (click)="ukloniStare()">DA</button><br>
+    <input type="file" multiple id="idfajla" name="gal" accept="image/jpg, image/pgn, image/jpeg, video/mp4" [(ngModel)]='galerija' *ngIf="ukloniS==1">
+   <br>
+   <label for="izd">Izaberite da li je nekretnina za izdavanje ili prodaju</label>
+   <select [(ngModel)]="iznPro" name="iznPro" id="izd">
+        <option value="izdavanje">izdavanje</option>
+        <option value="prodaja">prodaja</option>
+    </select>
+    <input type="number" [(ngModel)]="cena" name="cena" placeholder="Unesite novu cenu">
+    <button (click)="izmenaNekretnine()">Izmeni</button>
+</form>
+    </div>
+
+<br>
+</div>
+</div>
+<div *ngIf="user.tip=='reg_korisnik'">
+    <div class=sidebar>
+    
+        <figure class="centrirano" >
+    <img src="/assets/{{user.slika}}" class="avatar" >
+    <br>
+    <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+</figure>
+    <br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main">
+    <div style="padding: 15px;border-bottom: 1px solid #ddd;display: flex;justify-content: center;font-size: medium;border-top: 1px solid #ddd;margin-top: 8px;">
+    <table>
+        <tr>
+            <td>Naziv nekretnine</td>
+        </tr>
+        <tr *ngFor="let mm of mojeNekretnine">
+            <div *ngIf="mm.odobreno==0">
+            <td style="background-color: red;">{{mm.naziv}}</td>
+            <td style="background-color: red;">
+                <button (click)="izmeni(mm)">Izmeni</button>
+            </td>
+        </div>
+        <div *ngIf="mm.odobreno==1">
+            <td>{{mm.naziv}}</td>
+            <td>
+                <button (click)="izmeni(mm)">Izmeni</button>
+            </td>
+        </div>
+        </tr>
+    </table>
+</div><br>
+<div class="form-style-6" *ngIf="izmena==1">
+    <h1>Azuriraj podatke - {{kojaZaIzmenu.naziv}}</h1>
+    <form>
+    <input type="text" placeholder="Unesite novi naziv nekretnine" name="naziv" [(ngModel)]="naziv">
+    <input type="text" placeholder="Unesite novi grad adrese" name="adresa" [(ngModel)]="drzava">
+    <input type="text" placeholder="Unesite novi deo grada adrese" name="grad" [(ngModel)]="grad">
+    <input type="text" name="adresa" [(ngModel)]="ulica" placeholder="Unesite novu ulicu adrese">
+    <label for="tip">Izaberite da li je nekretnina stan ili kuca</label>
+    <select [(ngModel)]="tip" name="tip" id="tip">
+        <option value="kuca">kuca</option>
+        <option value="stan">stan</option>
+    </select>
+    <input type="text" [(ngModel)]="sprat" name="sprat" placeholder="Unesite novi sprat">
+    <input type="text" [(ngModel)]="spratovnost" name="spratovnost" placeholder="Unesite novi ukupan broj spratova"  *ngIf="kojaZaIzmenu.tip=='stan'">
+    <input type="number" [(ngModel)]="kvadratura" name="kvadratura" placeholder="Unesite novu kvadraturu">
+    <input type="text" name="br_soba" [(ngModel)]="brsoba" placeholder="Unesite novi broj soba u tekstualnom formatu">
+    <label for="nam">Izaberite da li je stan namesten ili ne</label>
+    <select [(ngModel)]="namesten" name="namesten" id="nam">
+        <option value="namesten">namesten</option>
+        <option value="nenamesten">nenamesten</option>
+        <option value="polunamesten">polunamesten</option>
+    </select>
+    Da li zelite da dodate nove slike nekretnini? <button (click)="dodajNove()">DA</button><br>
+    <input type="file" multiple id="idfajla" name="gal" accept="image/jpg, image/pgn, image/jpeg, video/mp4" [(ngModel)]='galerija' *ngIf="dodajN==1">
+    <br>Da li zelite da uklonite stare i dodate nove slike nekretnine?<button (click)="ukloniStare()">DA</button><br>
+    <input type="file" multiple id="idfajla" name="gal" accept="image/jpg, image/pgn, image/jpeg, video/mp4" [(ngModel)]='galerija' *ngIf="ukloniS==1">
+   <br>
+   <label for="izd">Izaberite da li je nekretnina za izdavanje ili prodaju</label>
+   <select [(ngModel)]="iznPro" name="iznPro" id="izd">
+        <option value="izdavanje">izdavanje</option>
+        <option value="prodaja">prodaja</option>
+    </select>
+    <input type="number" [(ngModel)]="cena" name="cena" placeholder="Unesite novu cenu">
+    <button (click)="izmenaNekretnine()">Izmeni</button>
+</form>
+    </div>
+</div>
+</div>

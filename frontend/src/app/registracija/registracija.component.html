@@ -1,0 +1,99 @@
+<div class="sidebar"><br>
+    <a (click)="prikaziLogin()">
+        <span>
+         Login
+        </span>
+    </a>
+    <!--<a (click)="reg()" style="background-color:rgb(70, 69, 69) ;">
+     <span>
+      Registracija
+     </span>
+     </a>-->
+    <a (click)="prikaziNekr()">
+     <span>
+      Pretrazi nekretnine
+     </span>
+ </a>
+ </div>
+<div class="main" style="padding-left: 50px;padding-top: 50px">
+<!--<form ngNativeValidate #forma1 style="display: grid;justify-content: center;">
+    <h1>Registracija</h1>
+<table>
+    <tr>
+        <td style="font-size: medium;">Ime:</td>
+        <td>
+            <input type="text" name="ime" [(ngModel)]="ime" required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Prezime:</td>
+        <td>
+            <input type="text" name="prezime" [(ngModel)]="prezime" required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Korisnicko ime:</td>
+        <td>
+            <input type="text" name="username" [(ngModel)]="username" required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Lozinka:</td>
+        <td>
+            <input type="password" name="password" [(ngModel)]="password" required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Potvrda lozinke:</td>
+        <td>
+        <input type="password" name="potvrdiP" [(ngModel)]="potvrdiP" required >
+    </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Email:</td>
+        <td>
+            <input type="text" name="mail" [(ngModel)]="mail" required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Profilna slika:</td>
+        <td>
+            <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg">
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Drzava</td>
+        <td>
+            <input type="text" name="drzava" [(ngModel)]="drzava"  required>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: medium;">Grad</td>
+        <input type="text" name="grad" [(ngModel)]="grad"  required>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button type="submit" (click)="forma1.checkValidity()?registracija():null">Registruj se</button>
+        </td>
+    </tr>
+</table>
+
+</form>-->
+<div class="form-style-6">
+    <h1>Registracija</h1>
+    <form ngNativeValidate #forma1>
+        <input type="text" name="ime" placeholder="Unesite ime" [(ngModel)]="ime" required>
+        <input type="text" name="prezime" placeholder="Unesite prezime" [(ngModel)]="prezime" required>
+    <input type="text" name="username" placeholder="Unesite korisnicko ime" [(ngModel)]="username" required>
+    <input type="password" name="password" placeholder="Unesite lozinku" [(ngModel)]="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+    <input type="password" name="potvrdiP" [(ngModel)]="potvrdiP" required placeholder="Potvrdite lozinku" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+    <input type="text" name="mail" [(ngModel)]="mail" required placeholder="Unesite email adresu">
+    Izaberite sliku profila  <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg" style="margin-bottom: 25px;"><br>
+    <input type="text" name="drzava" [(ngModel)]="drzava"  required placeholder="Unesite drzavu stanovanja">
+    <input type="text" name="grad" [(ngModel)]="grad"  required placeholder="Unesite grad stanovanja">
+     <button type="submit" (click)="forma1.checkValidity()?registracija():null">Registruj se</button>
+    </form>
+    </div>
+</div>
+
+

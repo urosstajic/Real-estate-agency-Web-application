@@ -1,0 +1,20 @@
+
+.container {
+      margin: 0 auto;
+      margin-top: 25px;
+    
+      height: 150px;
+      width: 600px;
+      background: #F2F2F2;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 2px #fff inset,
+                  -1px -1px 2px #fff inset;
+                  background-image: url("/assets/teksturaRed1.jpg");
+    text-align: center;
+   
+}
+
+.container::after{
+   
+    opacity: 0.5;
+}

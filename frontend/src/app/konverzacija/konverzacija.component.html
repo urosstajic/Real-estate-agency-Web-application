@@ -1,0 +1,210 @@
+<div *ngIf="user.tip=='reg_korisnik'">
+  <div class="sidebar">
+      <figure class="centrirano" >
+          <img src="/assets/{{user.slika}}" class="avatar" >
+          <br>
+          <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+      </figure>
+      <br>
+      <a  (click)="pocetna()">
+          <span>
+           Pocetna stranica
+          </span>
+      </a>
+      <a  (click)="povecajPodesavanja()">
+          <span>
+           Podesavanja
+          </span>
+      </a>
+      <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+          <span>
+           Promeni lozinku
+          </span>
+      </a>
+      <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+          <span>
+           Azuriraj podatke
+          </span>
+      </a>
+      <a (click)="povecajNekr()">
+          <span>
+           Nekretnine
+          </span>
+      </a>
+      <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+          <span>
+           Moje
+          </span>
+      </a>
+      <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+          <span>
+           Unesi novu
+          </span>
+      </a>
+      <a (click)="prikaziInbox()" style="background-color:rgb(70, 69, 69) ;">
+          <span>
+           Inbox
+          </span>
+      </a><br>
+      <button mat-button class="menu-button" (click)="logout()">
+          <mat-icon style="color: white;">logout</mat-icon>
+          <span style="color: white;">Logout</span>
+      </button>
+  </div>
+<div class="main"><br>
+<h1 style="display: flex;justify-content: center; ">{{konverzacija.nazivNekretnine}}</h1>
+<div style="display: grid;justify-content: center; flex-wrap: wrap;">
+<div *ngFor="let p of poruke" class="zaDiv" >
+<div class="container" *ngIf="kojaStrana(p)=='leva'" >
+    <img src="/assets/blank.png" alt="Avatar" class="slikaDesno">
+    <p>{{p.sadrzaj}}</p>
+    <span class="time-left">{{zaPosiljaoca(p)}},{{zaDatum(p.datumVreme)}}</span>
+    <br><br>
+    <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+        <button (click)="prihvatiZahtev(p)">Prihvati ponudu</button>
+    </p>
+      <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+        <button (click)="odbijZahtev(p)">Odbij ponudu</button>
+      </p>
+    <p *ngIf="tip(p)!='vlasnik'">
+        <button (click)="dajPonudu(p)">Daj ponudu</button>
+    </p>
+  </div>
+  <div class="darker" *ngIf="kojaStrana(p)=='desna'">
+    <img src="/assets/blank.png" alt="Avatar" class="slikaLevo">
+    <p> {{p.sadrzaj}}</p>
+    <span class="time-right">{{zaPosiljaoca(p)}},{{zaDatum(p.datumVreme)}}</span>
+    <br><br>
+    <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+        <button (click)="prihvatiZahtev(p)">Prihvati ponudu</button>
+    </p>
+      <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+        <button (click)="odbijZahtev(p)">Odbij ponudu</button>
+      </p>
+    <p *ngIf="tip(p)!='vlasnik'">
+        <button (click)="dajPonudu(p)">Daj ponudu</button>
+    </p>
+  </div>
+</div>
+<form ngNativeValidate #forma6>
+    <textarea name="sadrzaj" [(ngModel)]="sadrzaj" style="width: 500px;" required></textarea>
+    <button type="submit" style="width: 100px;" (click)="posaljiPoruku()">Posalji poruku</button>
+  </form>
+  <button  style="width: 100px;margin-left: 505px;" (click)="blokiraj()" *ngIf="daLiBlokiran()!='blokiran'">Blokiraj</button>
+  <button  style="width: 100px;margin-left: 505px;" (click)="odblokiraj()" *ngIf="daLiBlokiran()=='blokiran'">Odblokiraj</button>
+  <br><br>
+</div>
+</div>
+</div>
+<div *ngIf="user.tip=='radnik'">
+  <div class="sidebar">
+      <figure class="centrirano" >
+          <img src="/assets/{{user.slika}}" class="avatar" >
+          <br>
+          <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+      </figure><br>
+      <a  (click)="pocetna()">
+          <span>
+           Pocetna stranica
+          </span>
+      </a>
+      <a  (click)="povecajPodesavanja()">
+          <span>
+           Podesavanja
+          </span>
+      </a>
+      <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+          <span>
+           Promeni lozinku
+          </span>
+      </a>
+      <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+          <span>
+           Azuriraj podatke
+          </span>
+      </a>
+      <a (click)="povecajNekr()">
+          <span>
+           Nekretnine
+          </span>
+      </a>
+      <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+          <span>
+           Odobri
+          </span>
+      </a>
+      <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+          <span>
+           Unesi novu
+          </span>
+      </a>
+    <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+      <span>
+       Prikazi sve
+      </span>
+  </a>
+      <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Moje
+        </span>
+    </a>
+      <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+        </a>
+      <a (click)="prikaziInbox()" style="background-color:rgb(70, 69, 69) ;">
+          <span>
+           Inbox
+          </span>
+      </a><br>
+      <button mat-button class="menu-button" (click)="logout()">
+          <mat-icon style="color: white;">logout</mat-icon>
+          <span style="color: white;">Logout</span>
+      </button>
+  </div>
+  <div class="main"><br>
+    <h1 style="display: flex; justify-content: center;">{{konverzacija.nazivNekretnine}}</h1>
+    <div style="display: grid;justify-content: center;">
+    <div *ngFor="let p of poruke" class="zaDiv">
+    <div class="container" *ngIf="kojaStrana(p)=='leva'" >
+        <img src="/assets/blank.png" alt="Avatar" class="slikaDesno">
+        <p>{{p.sadrzaj}}</p>
+        <span class="time-left">{{zaPosiljaoca(p)}},{{zaDatum(p.datumVreme)}}Poslao agent:{{p.ime_agenta}}</span>
+        <br><br>
+        <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+            <button (click)="prihvatiZahtev(p)">Prihvati ponudu</button>
+        </p>
+          <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+            <button (click)="odbijZahtev(p)">Odbij ponudu</button>
+          </p>
+        <p *ngIf="tip(p)!='vlasnik'">
+            <button (click)="dajPonudu(p)">Daj ponudu</button>
+        </p>
+      </div>
+      <div class="darker" *ngIf="kojaStrana(p)=='desna'">
+        <img src="/assets/blank.png" alt="Avatar" class="slikaLevo">
+        <p> {{p.sadrzaj}}</p>
+        <span class="time-right">{{zaPosiljaoca(p)}},{{zaDatum(p.datumVreme)}}</span>
+        <br><br>
+        <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+            <button (click)="prihvatiZahtev(p)">Prihvati ponudu</button>
+        </p>
+          <p *ngIf="daLiDataPonuda(p)=='prikazi'">
+            <button (click)="odbijZahtev(p)">Odbij ponudu</button>
+          </p>
+        <p *ngIf="tip(p)!='vlasnik'">
+            <button (click)="dajPonudu(p)">Daj ponudu</button>
+        </p>
+      </div>
+    </div>
+    <form ngNativeValidate #forma6>
+      <textarea name="sadrzaj" [(ngModel)]="sadrzaj" style="width: 500px;" required></textarea>
+      <button type="submit" style="width: 100px;" (click)="posaljiPoruku()">Posalji poruku</button>
+    </form><button  style="width: 100px;margin-left: 505px;" (click)="blokirajAgencija()" *ngIf="daLiBlokiran()!='blokiran'">Blokiraj</button>
+    <button  style="width: 100px;margin-left: 505px;" (click)="odblokiraj()" *ngIf="daLiBlokiran()=='blokiran'">Odblokiraj</button><br>
+    </div>
+    
+  </div>
+  </div>
+  

@@ -1,0 +1,85 @@
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Odobri
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Prikazi sve
+        </span>
+    </a><a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main"><br>
+    <div style="display: flex;flex-wrap:wrap;justify-content: center;position: relative; ">
+    <div *ngFor="let n of nekretnine" class="container">
+            <div style="width: 400px;float: left;color: white;text-align: left;padding-left: 10px;">
+                {{n.naziv}}  <br>
+                {{n.adresa}}<br>
+                {{n.tip}}<br>
+                {{n.kvadratura}}<br>
+                {{n.cena}} 
+            </div>
+            <div style="margin-left: 400px;">
+                <img src="/assets/{{n.randomSlika}}" style="max-width:150px ;">
+            </div>
+        
+        <div *ngIf="n.promocija==0" style="margin-bottom: 0px;"> <button (click)="promovisi(n.idN)" style="width: 600px;font-size: medium;">Promovisi</button></div>
+        <div *ngIf="n.promocija==1" style="margin-bottom: 0px;"> <button (click)="izbaciIzPromovisanih(n.idN)" style="width: 600px;font-size: medium;">Izbaci iz promovisanih</button></div>
+</div>
+</div>
+<br>
+</div>

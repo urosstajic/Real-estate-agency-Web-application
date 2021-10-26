@@ -1,0 +1,157 @@
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Odobri
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+    </a>
+    <a (click)="povecajKorisnik()">
+        <span>
+            Korisnici
+        </span>
+    </a>
+    <a (click)="dodaj()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;background-color:rgb(70, 69, 69)">
+        <span>
+            Dodaj
+        </span>
+    </a>
+    <a (click)="izmeni()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+        <span>
+            Izmeni
+        </span>
+    </a>
+    <a (click)="odobriKorisnik()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+        <span>
+            Odobri
+        </span>
+    </a>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main">
+    Dodaj korisnika
+    <form class="form-style-6" ngNativeValidate #forma1>
+        <h1>Dodaj novog korisnika</h1>
+        <input type="text" name="ime" [(ngModel)]="ime" required placeholder="Unesite ime">
+        <input type="text" name="prezime" [(ngModel)]="prezime" required placeholder="Unesite prezime">
+        <input type="text" name="username" [(ngModel)]="username" required placeholder="Unesite korisnicko ime">
+        <input type="password" name="password" [(ngModel)]="password" required placeholder="Unesite lozinku" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+        <input type="password" name="potvrdiP" [(ngModel)]="potvrdiP" required placeholder="Potvrdite lozinku" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+        <input type="text" name="mail" [(ngModel)]="mail" required placeholder="Uneiste e-mail adresa">
+        <!--Izaberite sliku profila:  <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg">-->
+        Izaberite sliku profila:  <input type="file" name="sli" id="idfajla" accept="image/jpg, image/pgn, image/jpeg">
+        <input type="text" name="drzava" [(ngModel)]="drzava"  required placeholder="Unesite drzavu stanovanja">
+        <input type="text" name="grad" [(ngModel)]="grad"  required placeholder="Unesite grad stanovanja">
+        <label for="ti">Izaberite tip korisnika</label>
+        <select [(ngModel)]="tip" required id="ti" name="tip">
+            <option value="reg_korisnik" >korisnik</option>
+            <option value="radnik">agent</option>
+        </select>
+        <button type="submit" (click)="forma1.checkValidity()?registracija():null">Registruj se</button>
+    </form>
+    <!--<form ngNativeValidate #forma1>
+    <table>
+        <tr>
+            <td class="klasa1">Ime:</td>
+            <td>
+                <input type="text" name="ime" [(ngModel)]="ime" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Prezime:</td>
+            <td>
+                <input type="text" name="prezime" [(ngModel)]="prezime" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Korisnicko ime:</td>
+            <td>
+                <input type="text" name="username" [(ngModel)]="username" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Lozinka:</td>
+            <td>
+                <input type="password" name="password" [(ngModel)]="password" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Potvrda lozinke:</td>
+            <input type="password" name="potvrdiP" [(ngModel)]="potvrdiP" required >
+        </tr>
+        <tr>
+            <td class="klasa1">Email:</td>
+            <td>
+                <input type="text" name="mail" [(ngModel)]="mail" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Profilna slika:</td>
+            <td>
+                <input type="file" name="slika" [(ngModel)]="slika">
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Drzava</td>
+            <td>
+                <input type="text" name="drzava" [(ngModel)]="drzava"  required>
+            </td>
+        </tr>
+        <tr>
+            <td class="klasa1">Grad</td>
+            <input type="text" name="grad" [(ngModel)]="grad"  required>
+        </tr>
+        <tr>
+            <td class="klasa1">Tip</td>
+            <input type="text" name="tip" [(ngModel)]="tip"  required>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" (click)="forma1.checkValidity()?registracija():null">Registruj se</button>
+            </td>
+        </tr>
+    </table>
+    
+    </form>-->
+</div>

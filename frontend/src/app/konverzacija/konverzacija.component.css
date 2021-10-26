@@ -1,0 +1,71 @@
+.container {
+    float: left;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 400px;
+    text-align: left;
+  }
+
+  .darker {
+    float: right;
+    border: 2px solid #dedede;
+    border-color: #ccc;
+    background-color: #ddd;
+    text-align: right;
+    width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    margin-left: 200px;
+  }
+  
+  /* Clear floats */
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .darker::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }
+
+  .slikaLevo {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  /* Style the right image */
+  .slikaDesno {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+
+  .zaDiv{
+      
+      width: 600px;
+  }
+  

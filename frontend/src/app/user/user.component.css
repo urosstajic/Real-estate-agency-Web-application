@@ -1,0 +1,93 @@
+.example-card{
+    color: white;
+    max-width: 300px;
+    margin: 4px;
+    background-image: url("/assets/tekstura2.jpg");
+    height: 500px;
+}
+
+.boja{
+    background-color: lightgray;
+}
+
+
+
+.nekaKlasa{
+    width: 500px;
+    height: 500px;
+    padding-left: 50px;
+    padding-top: 50px;
+
+}
+
+table{
+    width: 500px;
+}
+
+.klasa1{
+    width: max-content;
+    height: max-content;
+    font-size: large;
+}
+
+.zaKartice{
+    display: flex;
+    justify-content: center;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-size: large;
+    color: #7c795d; font-family: 'Trocchi', serif; font-size: 24px; font-weight: normal; line-height: 30px;
+    background-image: url("/assets/tekstura.jpg");
+}
+
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 500px;
+  }
+
+  .vertical {
+    
+    margin-left: 430px;
+    
+}
+
+ tr {
+  padding: 10px;
+}
+
+
+

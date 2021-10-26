@@ -1,0 +1,87 @@
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Odobri
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+    </a>
+    <a (click)="povecajKorisnik()">
+        <span>
+            Korisnici
+        </span>
+    </a>
+    <a (click)="dodaj()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+        <span>
+            Dodaj
+        </span>
+    </a>
+    <a (click)="izmeni()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;background-color:rgb(70, 69, 69)">
+        <span>
+            Izmeni
+        </span>
+    </a>
+    <a (click)="odobriKorisnik()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+        <span>
+            Odobri
+        </span>
+    </a>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main"><br><br>
+    <form class="form-style-6">
+        <h1>Spisak korisnika</h1>
+        <table *ngFor="let s of useriZaPrikaz" style="padding: 6px;display: flex;justify-content: center;">
+            <tr style="padding: 6px;">
+                <td style="padding: 6px;">{{s.username}}</td>
+                <td style="padding: 6px;">
+                    <button (click)="brisiKorisnika(s.username)"  style="width: 60px;height: 40px;">Brisi</button>
+                </td>
+                <td style="padding: 6px;">
+                    <button (click)="izmeniKorisnika(s)" style="width: 60px;height: 40px;">Izmeni</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+table { 
+    border-collapse: collapse; 
+}
+
+tr{
+    border-bottom: 1pt solid black;
+}
+
+table :hover{
+    background-color: rgb(99, 99, 99);
+}

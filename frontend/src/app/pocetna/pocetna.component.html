@@ -1,0 +1,78 @@
+<div class="sidebar"> <br>
+    <a (click)="prikaziLogin()">
+        <span>
+         Login
+        </span>
+    </a>
+    <!--<script defer src=""></script><a (click)="reg()">
+     <span>
+      Registracija
+     </span>
+     </a>-->
+    <a (click)="prikaziNekr()" style="background-color:rgb(70, 69, 69) ;">
+     <span>
+      Pretrazi nekretnine
+     </span>
+ </a>
+</div>
+<div class="main" >
+    <!--<div style="display: grid;justify-content: center;padding-top: 80px;">
+<a name="nekr"></a>
+<h1>Pretraga nekretnina</h1>
+    <table>
+    <tr>
+        <td>Unesite ime grada</td>
+        <td>
+            <input type="text" name="kojiGrad" [(ngModel)]="kojiGrad">
+        </td>
+    </tr>
+    <tr>
+        <td>Cena od</td>
+        <td>
+            <input type="number" name="cenaOd" [(ngModel)]="cenaOd">
+        </td>
+        <td style="width: 70px;">Cena do</td>
+        <td>
+            <input type="number" name="cenaDo" [(ngModel)]="cenaDo">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <button (click)="pretraziNekretnine()">Pretrazi</button>
+        </td>
+    </tr>
+    </table>--><br><br>
+    <div class="form-style-6">
+        <h1>Pretraga nekretnina</h1>
+        <form>
+        <input type="text" name="kojiGrad" placeholder="Unesite ime grada" [(ngModel)]="kojiGrad">
+        <input type="text" name="cenaOd" placeholder="Unesite cenu OD" [(ngModel)]="cenaOd">
+        <input type="text" name="cenaDo" placeholder="Unesite cenu DO" [(ngModel)]="cenaDo">
+         <button (click)="pretraziNekretnine()">Pretrazi</button>
+        </form>
+        </div>
+<br><br>
+    <div style="display: flex;flex-wrap: wrap;" *ngIf="zaPrik==1">
+        <div *ngFor="let z of zaPrikazivanje" style="width: 25%;">
+            <div *ngIf="z.odobreno==1">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title >{{z.naziv}}</mat-card-title>
+            </mat-card-header>
+            <video  *ngIf="slikaVideo(z)=='video'" style="max-width: 300px;max-width: 270px;" controls>
+                <source src="/assets/{{z.randomSlika}}" type="video/mp4">
+            </video>
+            <img mat-card-image src="/assets/{{z.randomSlika}}"  *ngIf="slikaVideo(z)=='slika'">
+               <mat-card-content>
+                    <b>Grad, opstina:</b>{{dohvatiGradOpstinu(z.adresa)}}<br>
+                    <b>Cena:</b> {{z.cena}} eura<br>
+                   <b>Kuca/stan:</b>  {{dohvatiTip(z)}}<br>
+                    <b>Kvadratura:</b> {{z.kvadratura}}<br>
+                    <b>Izdavanje/prodaja:</b> {{z.izdavanje_prodaja}}
+               </mat-card-content>
+           </mat-card>
+        </div>
+        </div>
+    </div>
+
+</div>

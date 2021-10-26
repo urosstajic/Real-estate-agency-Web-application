@@ -1,0 +1,419 @@
+<div *ngIf="user.tip=='reg_korisnik'">
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main">
+   <!--<br><br><br>
+    <div style="display: flex; justify-content: center; font-size: xx-large;">AZURIRAJ PODATKE</div><br><br><br>
+    <fieldset>
+    <div style="display: flex; justify-content: center;">
+    <table style="height: 400px;">
+        <tr>
+            <td style="width: 200px; font-size: large;">Promeni username</td>
+            <td style="width: 200px;">
+                <input type="text" name="novoUsername" [(ngModel)]="novoUsername">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">
+                Promeni ime:
+            </td>
+            <td style="width: 200px;">
+                <input type="text" name="ime" [(ngModel)]='ime'>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">
+                Promeni prezime:
+            </td>
+            <td  style="width: 200px;">
+                <input type="text" name="prezime" [(ngModel)]='prezime'>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">Promeni sliku profila</td>
+            <td style="width: 200px;">
+                <input type="file" name="slika" [(ngModel)]="slika">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">Promeni mail</td>
+            <td style="width: 200px;">
+                <input type="text" name="mail" [(ngModel)]="mail">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">Promeni drzavu</td>
+            <td style="width: 200px;">
+                <input type="text" name="drzava" [(ngModel)]="drzava">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px; font-size: large;">Promeni grad</td>
+            <td style="width: 200px;">
+                <input type="text" name="grad" [(ngModel)]="grad">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button style="font-size: large;" (click)="azuriraj()">Azuriraj podatke</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</fieldset>--><br>
+<div class="form-style-6">
+    <h1>Azuriraj podatke</h1>
+    <form>
+    <input type="text" placeholder="Unesite novo korisnicko ime" name="novoUsername" [(ngModel)]="novoUsername">
+    <input type="text" placeholder="Unesite novo ime" name="ime" [(ngModel)]='ime'>
+    <input type="text" placeholder="Unesite novo prezime" name="prezime" [(ngModel)]='prezime'>
+    Promenite sliku profila   <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg" style="margin-bottom: 25px;">
+    <input type="text" placeholder="Unesite novu mail adresu" name="mail" [(ngModel)]="mail">
+    <input type="text" name="drzava" [(ngModel)]="drzava" placeholder="Promenite drzavu stanovanja">
+    <input type="text" name="grad" [(ngModel)]="grad" placeholder="Promenite grad stanovanja">
+     <button (click)="azuriraj()">Azuriraj podatke</button>
+    </form>
+    </div>
+</div>
+</div>
+<div *ngIf="user.tip=='radnik'">
+    <div class="sidebar">
+        <figure class="centrirano" >
+            <img src="/assets/{{user.slika}}" class="avatar" >
+            <br>
+            <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+        </figure><br>
+        <a  (click)="pocetna()">
+            <span>
+             Pocetna stranica
+            </span>
+        </a>
+        <a  (click)="povecajPodesavanja()">
+            <span>
+             Podesavanja
+            </span>
+        </a>
+        <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Promeni lozinku
+            </span>
+        </a>
+        <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+            <span>
+             Azuriraj podatke
+            </span>
+        </a>
+        <a (click)="povecajNekr()">
+            <span>
+             Nekretnine
+            </span>
+        </a>
+        <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Odobri
+            </span>
+        </a>
+        <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Unesi novu
+            </span>
+        </a>
+        <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Prikazi sve
+            </span>
+        </a>
+        <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Moje
+            </span>
+        </a>
+        <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Ugovorene prodaje
+            </span>
+        </a>
+        <a (click)="prikaziInbox()">
+            <span>
+             Inbox
+            </span>
+        </a><br>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon style="color: white;">logout</mat-icon>
+            <span style="color: white;">Logout</span>
+        </button>
+    </div>
+    <div class="main">
+        <!--<br><br><br>
+        <div style="display: flex; justify-content: center; font-size: xx-large;">AZURIRAJ PODATKE</div><br><br><br>
+        <fieldset>
+        <div style="display: flex; justify-content: center;">
+        <table style="height: 400px;">
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni username</td>
+                <td style="width: 200px;">
+                    <input type="text" name="novoUsername" [(ngModel)]="novoUsername">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">
+                    Promeni ime:
+                </td>
+                <td style="width: 200px;">
+                    <input type="text" name="ime" [(ngModel)]='ime'>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">
+                    Promeni prezime:
+                </td>
+                <td  style="width: 200px;">
+                    <input type="text" name="prezime" [(ngModel)]='prezime'>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni sliku profila</td>
+                <td style="width: 200px;">
+                    <input type="file" name="slika" [(ngModel)]="slika">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni mail</td>
+                <td style="width: 200px;">
+                    <input type="text" name="mail" [(ngModel)]="mail">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni drzavu</td>
+                <td style="width: 200px;">
+                    <input type="text" name="drzava" [(ngModel)]="drzava">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni grad</td>
+                <td style="width: 200px;">
+                    <input type="text" name="grad" [(ngModel)]="grad">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button style="font-size: large;" (click)="azuriraj()">Azuriraj podatke</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </fieldset>-->
+    <br>
+<div class="form-style-6">
+    <h1>Azuriraj podatke</h1>
+    <form>
+    <input type="text" placeholder="Unesite novo korisnicko ime" name="novoUsername" [(ngModel)]="novoUsername">
+    <input type="text" placeholder="Unesite novo ime" name="ime" [(ngModel)]='ime'>
+    <input type="text" placeholder="Unesite novo prezime" name="prezime" [(ngModel)]='prezime'>
+    Promenite sliku profila   <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg" style="margin-bottom: 25px;">
+    <input type="text" placeholder="Unesite novu mail adresu" name="mail" [(ngModel)]="mail">
+    <input type="text" name="drzava" [(ngModel)]="drzava" placeholder="Promenite drzavu stanovanja">
+    <input type="text" name="grad" [(ngModel)]="grad" placeholder="Promenite grad stanovanja">
+     <button (click)="azuriraj()">Azuriraj podatke</button>
+    </form>
+    </div>
+</div>
+    </div>
+
+<div *ngIf="user.tip=='admin'">
+    <div class="sidebar">
+        <figure class="centrirano" >
+            <img src="/assets/{{user.slika}}" class="avatar" >
+            <br>
+            <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+        </figure><br>
+        <a  (click)="pocetna()">
+            <span>
+             Pocetna stranica
+            </span>
+        </a>
+        <a  (click)="povecajPodesavanja()">
+            <span>
+             Podesavanja
+            </span>
+        </a>
+        <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Promeni lozinku
+            </span>
+        </a>
+        <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+            <span>
+             Azuriraj podatke
+            </span>
+        </a>
+        <a (click)="povecajNekr()">
+            <span>
+             Nekretnine
+            </span>
+        </a>
+        <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Odobri
+            </span>
+        </a>
+        <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Unesi novu
+            </span>
+        </a>
+        <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Ugovorene prodaje
+            </span>
+        </a>
+        <a (click)="povecajKorisnik()">
+            <span>
+                Korisnici
+            </span>
+        </a>
+        <a (click)="dodaj()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Dodaj
+            </span>
+        </a>
+        <a (click)="izmeni()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Izmeni
+            </span>
+        </a>
+        <a (click)="odobriKorisnik()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Odobri
+            </span>
+        </a>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon style="color: white;">logout</mat-icon>
+            <span style="color: white;">Logout</span>
+        </button>
+    </div>
+    <div class="main">
+        <!--<br><br><br>
+        <div style="display: flex; justify-content: center; font-size: xx-large;">AZURIRAJ PODATKE</div><br><br><br>
+        <fieldset>
+        <div style="display: flex; justify-content: center;">
+        <table style="height: 400px;">
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni username</td>
+                <td style="width: 200px;">
+                    <input type="text" name="novoUsername" [(ngModel)]="novoUsername">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">
+                    Promeni ime:
+                </td>
+                <td style="width: 200px;">
+                    <input type="text" name="ime" [(ngModel)]='ime'>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">
+                    Promeni prezime:
+                </td>
+                <td  style="width: 200px;">
+                    <input type="text" name="prezime" [(ngModel)]='prezime'>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni sliku profila</td>
+                <td style="width: 200px;">
+                    <input type="file" name="slika" [(ngModel)]="slika">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni mail</td>
+                <td style="width: 200px;">
+                    <input type="text" name="mail" [(ngModel)]="mail">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni drzavu</td>
+                <td style="width: 200px;">
+                    <input type="text" name="drzava" [(ngModel)]="drzava">
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-size: large;">Promeni grad</td>
+                <td style="width: 200px;">
+                    <input type="text" name="grad" [(ngModel)]="grad">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button style="font-size: large;" (click)="azuriraj()">Azuriraj podatke</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </fieldset>-->
+    <br>
+<div class="form-style-6">
+    <h1>Azuriraj podatke</h1>
+    <form>
+    <input type="text" placeholder="Unesite novo korisnicko ime" name="novoUsername" [(ngModel)]="novoUsername">
+    <input type="text" placeholder="Unesite novo ime" name="ime" [(ngModel)]='ime'>
+    <input type="text" placeholder="Unesite novo prezime" name="prezime" [(ngModel)]='prezime'>
+    Promenite sliku profila   <input type="file" name="slika" [(ngModel)]="slika" accept="image/jpg, image/pgn, image/jpeg" style="margin-bottom: 25px;">
+    <input type="text" placeholder="Unesite novu mail adresu" name="mail" [(ngModel)]="mail">
+    <input type="text" name="drzava" [(ngModel)]="drzava" placeholder="Promenite drzavu stanovanja">
+    <input type="text" name="grad" [(ngModel)]="grad" placeholder="Promenite grad stanovanja">
+     <button (click)="azuriraj()">Azuriraj podatke</button>
+    </form>
+    </div>
+</div>
+    </div>

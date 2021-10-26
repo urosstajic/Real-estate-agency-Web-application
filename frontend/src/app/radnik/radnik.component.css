@@ -1,0 +1,16 @@
+.zaInbox{
+    background-color: blue;
+}
+
+.example-card{
+    color: white;
+    max-width: 300px;
+    margin: 4px;
+    background-image: url("/assets/tekstura2.jpg");
+    height: 400px;
+}
+
+.boja{
+    background-color: lightgray;
+}
+

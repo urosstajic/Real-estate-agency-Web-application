@@ -1,0 +1,336 @@
+<div *ngIf="user.tip=='radnik'">
+<div class="sidebar">
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Odobri
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Prikazi sve
+        </span>
+    </a><a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Ugovorene prodaje
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main">
+<form class="form-style-6" style="margin-top: 25px;max-width: 500px;">
+    <h1>Odobri nekretninu</h1>
+<table style="font-size: medium;">
+    <tr>
+        <td style="padding: 5px;" >Naziv</td>
+        <td style="padding: 5px;">Adresa</td>
+        <td style="padding: 5px;">Vlasnik</td>
+    </tr>
+    <tr *ngFor="let n of nekretnine">
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+        {{n.naziv}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            {{n.adresa}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            {{n.ime_vlasnika}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            <button (click)="odobri(n)" style="width: 50px;height: 35px;">Odobri</button>
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 20px;">
+            <button (click)="odbij(n)" style="width: 50px;height: 35px;">Odbij</button>
+        </td>
+    </tr>
+</table>
+</form>
+<br><br>
+
+<h1 style="display: flex;justify-content: center;">Odobri ugovorene ponude</h1>
+
+<!--<h4>Ugovorene ponude za izdavanje</h4>
+<table>
+    <tr>
+        <td>Naziv nekretnine</td>
+        <td>Ime vlasnika</td>
+        <td>Cena</td>
+        <td>Kome se izdaje?</td>
+        <td>Period izdavanja</td>
+    </tr>
+    <tr *ngFor="let p of ugovorenePonudeIzdavanje">
+        <td>
+            {{p.nekretnina}}
+        </td>
+        <td>
+            {{p.ime_vlasnika}}
+        </td>
+        <td>
+            {{p.cena}}
+        </td>
+        <td>
+            {{p.korisnik}}
+        </td>
+        <td>
+            {{p.vremeOd}}-{{p.vremeDo}}
+        </td>
+        <td>
+            <button (click)="odobriDogovorenoIzdavanje(p)">Odobri</button>
+        </td>
+        <td>
+            <button (click)="odbijDogovorenoIzdavanje(p)">Odbij</button>
+        </td>
+    </tr>
+</table>-->
+<div style="display: flex;">
+    
+<form class="form-style-6"  style="margin-top: 25px;max-width: 500px;">
+    <h1>Ugovorene ponude za izdavanje</h1>
+    <table style="font-size: medium;">
+        <tr>
+            <td style="padding: 5px;" >Naziv nekretnine</td>
+            <td style="padding: 5px;">Ime vlasnika</td>
+            <td style="padding: 5px;">Cena</td>
+            <td style="padding: 5px;">Kome se izdaje?</td>
+            <td style="padding: 5px;">Period izdavanja</td>
+        </tr>
+        <tr *ngFor="let p of ugovorenePonudeIzdavanje">
+            <td>
+                {{p.nekretnina}}
+            </td>
+            <td>
+                {{p.ime_vlasnika}}
+            </td>
+            <td>
+                {{p.cena}}
+            </td>
+            <td>
+                {{p.korisnik}}
+            </td>
+            <td>
+                {{p.vremeOd}}-{{p.vremeDo}}
+            </td>
+            <td>
+                <button (click)="odobriDogovorenoIzdavanje(p)">Odobri</button>
+            </td>
+            <td>
+                <button (click)="odbijDogovorenoIzdavanje(p)">Odbij</button>
+            </td>
+        </tr>
+    </table>
+</form><br><br>
+<form class="form-style-6" style="margin-top: 25px;max-width: 500px;">
+<h1>Ugovorene ponude za prodaju</h1>
+<table style="font-size: medium;">
+    <tr>
+        <td style="padding: 5px;">Naziv nekretnine</td>
+        <td style="padding: 5px;">Ime vlasnika</td>
+        <td style="padding: 5px;">Cena</td>
+        <td style="padding: 5px;">Kome se prodaje?</td>
+        <td style="padding: 5px;">Nacin placanja</td>
+    </tr>
+    <tr *ngFor="let p of ugovorenePonudeProdaja">
+        <td>
+            {{p.nekretnina}}
+        </td>
+        <td>
+            {{p.ime_vlasnika}}
+        </td>
+        <td>
+            {{p.cena}}
+        </td>
+        <td>
+            {{p.korisnik}}
+        </td>
+        <td>
+            {{p.placanje}}
+        </td>
+        <td>
+            <button (click)="odobriDogovorenuProdaju(p)">Odobri</button>
+        </td>
+        <td>
+            <button (click)="odbijDogovorenuProdaju(p)">Odbij</button>
+        </td>
+    </tr>
+</table>
+</form>
+</div>
+<br>
+<br>
+</div>
+</div>
+<div *ngIf="user.tip=='admin'">
+    <div class="sidebar">
+        <figure class="centrirano" >
+            <img src="/assets/{{user.slika}}" class="avatar" >
+            <br>
+            <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+        </figure>
+        <br><a (click)="pocetna()">
+            <span>
+             Pocetna stranica
+            </span>
+        </a>
+        <a  (click)="povecajPodesavanja()">
+            <span>
+             Podesavanja
+            </span>
+        </a>
+        <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Promeni lozinku
+            </span>
+        </a>
+        <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Azuriraj podatke
+            </span>
+        </a>
+        <a (click)="povecajNekr()">
+            <span>
+             Nekretnine
+            </span>
+        </a>
+        <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+            <span>
+             Odobri
+            </span>
+        </a>
+        <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Unesi novu
+            </span>
+        </a>
+        <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Ugovorene prodaje
+            </span>
+        </a>
+        <a (click)="povecajKorisnik()">
+            <span>
+                Korisnici
+            </span>
+        </a>
+        <a (click)="dodaj()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Dodaj
+            </span>
+        </a>
+        <a (click)="izmeni()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Izmeni
+            </span>
+        </a>
+        <a (click)="odobriKorisnik()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Odobri
+            </span>
+        </a>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon style="color: white;">logout</mat-icon>
+            <span style="color: white;">Logout</span>
+        </button>
+    </div>
+    <div class="main">
+        <!--<h2>Odobri nekretninu</h2>
+<table >
+    <tr>
+        <td>Naziv</td>
+        <td>Adresa</td>
+        <td>Vlasnik</td>
+    </tr>
+    <tr *ngFor="let n of nekretnine">
+        <td *ngIf="n.odobreno==0">
+        {{n.naziv}}
+        </td>
+        <td *ngIf="n.odobreno==0">
+            {{n.adresa}}
+        </td>
+        <td *ngIf="n.odobreno==0">
+            {{n.ime_vlasnika}}
+        </td>
+        <td *ngIf="n.odobreno==0">
+            <button (click)="odobri(n)">Odobri</button>
+        </td>
+        <td *ngIf="n.odobreno==0">
+            <button (click)="odbij(n)">Odbij</button>
+        </td>
+    </tr>
+</table>-->
+<form class="form-style-6" style="margin-top: 25px;max-width: 500px;">
+    <h1>Odobri nekretninu</h1>
+<table style="font-size: medium;">
+    <tr>
+        <td style="padding: 5px;" >Naziv</td>
+        <td style="padding: 5px;">Adresa</td>
+        <td style="padding: 5px;">Vlasnik</td>
+    </tr>
+    <tr *ngFor="let n of nekretnine">
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+        {{n.naziv}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            {{n.adresa}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            {{n.ime_vlasnika}}
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 5px;">
+            <button (click)="odobri(n)" style="width: 50px;height: 35px;">Odobri</button>
+        </td>
+        <td *ngIf="n.odobreno==0" style="padding: 20px;">
+            <button (click)="odbij(n)" style="width: 50px;height: 35px;">Odbij</button>
+        </td>
+    </tr>
+</table>
+</form>
+<br><br>
+    </div>
+</div>

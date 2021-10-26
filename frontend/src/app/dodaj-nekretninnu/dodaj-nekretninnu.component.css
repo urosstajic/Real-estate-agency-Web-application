@@ -1,0 +1,9 @@
+form{
+    display: grid;
+    justify-content: center;
+}
+
+tr, td {
+    padding: 8px;
+    text-align: left;
+  }

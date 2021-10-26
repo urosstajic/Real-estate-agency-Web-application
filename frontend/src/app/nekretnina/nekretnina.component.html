@@ -1,0 +1,143 @@
+<div class=sidebar>
+    
+    <figure class="centrirano" >
+<img src="/assets/{{user.slika}}" class="avatar" >
+<br>
+<figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+</figure>
+<br>
+<a  (click)="pocetna()">
+    <span>
+     Pocetna stranica
+    </span>
+</a>
+<a  (click)="povecajPodesavanja()">
+    <span>
+     Podesavanja
+    </span>
+</a>
+<a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+    <span>
+     Promeni lozinku
+    </span>
+</a>
+<a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+    <span>
+     Azuriraj podatke
+    </span>
+</a>
+<a (click)="povecajNekr()">
+    <span>
+     Nekretnine
+    </span>
+</a>
+<a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+    <span>
+     Moje
+    </span>
+</a>
+<a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+    <span>
+     Unesi novu
+    </span>
+</a>
+<a (click)="prikaziInbox()">
+    <span>
+     Inbox
+    </span>
+</a><br>
+<button mat-button class="menu-button" (click)="logout()">
+    <mat-icon style="color: white;">logout</mat-icon>
+    <span style="color: white;">Logout</span>
+</button>
+</div>
+<div class="main"><br><br>
+    <div>
+    <div style="float: left;">
+<div style="display: flex;flex-wrap: wrap; justify-content: center;width: 820px;background-color: rgb(56, 55, 55); color: white;height: 300px;padding-top: 10px;">
+    <div style="float: left; width: 500px;">
+        <br>
+        <div style="margin-left: 10px;font-size: medium;">
+        Naziv nekretnine:  {{nekretnina.naziv}}<br>
+        Adresa:  {{nekretnina.adresa}}<br>
+        Tip nekretnine:  {{nekretnina.tip}}<br>
+        Izdavanje/prodaja:  {{nekretnina.izdavanje_prodaja}}<br>
+        Kvadratura:  {{nekretnina.kvadratura}}<br>
+        Cena:  {{nekretnina.cena}}<br>
+        Vlasnik:  {{nekretnina.ime_vlasnika}}<br>
+        <button (click)="kontaktirajVlasnika()">Kontaktiraj vlasnika</button>
+    </div>
+    </div>
+    <div style="padding-top: 20px;">
+        <img src="/assets/{{nekretnina.randomSlika}}" style="max-width:300px;">
+    </div>
+</div>
+</div>
+<div *ngIf='nekretnina.ime_vlasnika!=user.username'>
+    <div *ngIf="daLiBlokiran()!='blokiran'">
+<form class="form-style-6" *ngIf="nekretnina.izdavanje_prodaja=='izdavanje'" style="margin-left: 820px;border-color: rgb(56, 55, 55);border: 1px solid rgb(56, 55, 55)">
+    <h1>Forma za iznajmljivanje nekretnine</h1>
+    <input type="text" name="pocetak" [(ngModel)]='pocetak' placeholder="Unesite datum od kog zelite iznajmiti nekretninu u formi yyyy-mm-dd">
+    <input type="text" name="kraj" [(ngModel)]='kraj' placeholder="Unesite datum do kog zelite iznajmiti nekretninu u formi yyyy-mm-dd">
+    <button (click)="izdavanje()">Iznajmi</button><br><br><br>
+    <textarea *ngIf="kliknuto==1" name="sadrzaj" [(ngModel)]="sadrzaj" placeholder="Unesite sadrzaj poruke"></textarea>
+    <button *ngIf="kliknuto==1" (click)="posaljiPoruku()">Posalji poruku</button>
+</form>
+<form class="form-style-6" *ngIf="nekretnina.izdavanje_prodaja=='prodaja'" style="margin-left: 820px;">
+    <h1>Forma za kupovinu nekretnine</h1>
+    Izaberite opciju za placanje:  
+    <input type="radio" name="placanje" value="kredit" [(ngModel)]="placanje">Kredit
+    <input type="radio" name="placanje" value="gotovina" [(ngModel)]="placanje">Gotovina<br>
+    <div *ngIf="placanje=='kredit'">
+        Ucesce je {{nekretnina.cena*20/100}} eura
+    </div><br>
+    <button (click)="prodaja()">Kupi</button><br><br><br>
+    <textarea *ngIf="kliknuto==1" name="sadrzaj" [(ngModel)]="sadrzaj" placeholder="Unesite sadrzaj poruke"></textarea>
+    <button *ngIf="kliknuto==1" (click)="posaljiPoruku()">Posalji poruku</button>
+</form>
+</div>
+<div *ngIf="daLiBlokiran()=='blokiran'" style="color: red;font-size: large;">
+    Nije moguce ostvariti komunikaciju sa zeljenim korisnikom.
+</div>
+</div>
+</div>
+<!--<table *ngIf="nekretnina.izdavanje_prodaja=='izdavanje'">
+    <tr>
+        <td>Unesite period izdavanja</td>
+    </tr>
+    <tr>
+        <td>od</td>
+        <td>
+            <input type="text" name="pocetak" [(ngModel)]='pocetak'>
+        </td>
+        <td>do</td>
+        <td>
+            <input type="text" name="kraj" [(ngModel)]='kraj'>
+        </td>
+    </tr>
+    <tr>
+        <button (click)="izdavanje()">Iznajmi</button>
+    </tr>
+</table>-->
+<!--<div *ngIf="nekretnina.izdavanje_prodaja=='prodaja'">
+    <table>
+        <tr>
+            <td>Izaberite opciju za placanje</td>
+            <td>
+                <input type="radio" name="placanje" value="kredit" [(ngModel)]="placanje">Kredit
+                <input type="radio" name="placanje" value="gotovina" [(ngModel)]="placanje">Gotovina
+            </td>
+        </tr>
+        <tr *ngIf="placanje=='kredit'">
+            <td>Usesce</td>
+            <td>{{nekretnina.cena*20/100}} eura</td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="prodaja()">Kupi</button>
+            </td>
+        </tr>
+    </table>
+
+</div>-->
+</div>

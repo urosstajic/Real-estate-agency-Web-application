@@ -1,0 +1,308 @@
+<div *ngIf="user.tip=='reg_korisnik'">
+<div class=sidebar>
+    <figure class="centrirano" >
+        <img src="/assets/{{user.slika}}" class="avatar" >
+        <br>
+        <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+    </figure><br>
+    <a  (click)="pocetna()">
+        <span>
+         Pocetna stranica
+        </span>
+    </a>
+    <a  (click)="povecajPodesavanja()">
+        <span>
+         Podesavanja
+        </span>
+    </a>
+    <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+        <span>
+         Promeni lozinku
+        </span>
+    </a>
+    <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+        <span>
+         Azuriraj podatke
+        </span>
+    </a>
+    <a (click)="povecajNekr()">
+        <span>
+         Nekretnine
+        </span>
+    </a>
+    <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Moje
+        </span>
+    </a>
+    <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+        <span>
+         Unesi novu
+        </span>
+    </a>
+    <a (click)="prikaziInbox()">
+        <span>
+         Inbox
+        </span>
+    </a><br>
+    <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon style="color: white;">logout</mat-icon>
+        <span style="color: white;">Logout</span>
+    </button>
+</div>
+<div class="main"><br>
+<!--<form ngNativeValidate #forma5>
+    <table>
+        <tr>
+            <td>Unesite staru lozinku:</td>
+            <td>
+                <input type="password" name="staraL" [(ngModel)]="staraL" required>
+            </td>
+        </tr>
+        <tr>
+            <td>Unesite novu lozinku</td>
+            <td>
+                <input type="password" name="nova" [(ngModel)]="nova" required>
+            </td>
+        </tr>
+        <tr>
+            <td>Potvrdi novu lozinku</td>
+            <td>
+                <input type="password" name="potvrdiN" [(ngModel)]="potvrdiN" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button (click)="forma5.checkValidity()?promeniLoz():null">Promeni lozinku</button>
+            </td>
+        </tr>
+    </table>
+</form>--><br>
+<div class="form-style-6">
+    <h1>Promena lozinke</h1>
+    <form ngNativeValidate #forma5>
+    <input type="password" name="staraL" placeholder="Unesite staru lozinku" [(ngModel)]="staraL" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+    <input type="password" name="nova" placeholder="Unesite novu lozinku" [(ngModel)]="nova" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+    <input type="password" name="potvrdiN" placeholder="Potvrdite novu lozinku" [(ngModel)]="potvrdiN" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+     <button (click)="forma5.checkValidity()?promeniLoz():null">Promeni lozinku</button>
+    </form>
+</div>
+</div>
+</div>
+<div *ngIf="user.tip=='radnik'">
+    <div class="sidebar">
+        <figure class="centrirano" >
+            <img src="/assets/{{user.slika}}" class="avatar" >
+            <br>
+            <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+        </figure><br>
+        <a  (click)="pocetna()">
+            <span>
+             Pocetna stranica
+            </span>
+        </a>
+        <a  (click)="povecajPodesavanja()">
+            <span>
+             Podesavanja
+            </span>
+        </a>
+        <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+            <span>
+             Promeni lozinku
+            </span>
+        </a>
+        <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Azuriraj podatke
+            </span>
+        </a>
+        <a (click)="povecajNekr()">
+            <span>
+             Nekretnine
+            </span>
+        </a>
+        <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Odobri
+            </span>
+        </a>
+        <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Unesi novu
+            </span>
+        </a>
+        <a (click)="prikazSveNekr()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Prikazi sve
+            </span>
+        </a>
+        <a (click)="prikaziMojeN()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Moje
+            </span>
+        </a>
+        <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Ugovorene prodaje
+            </span>
+        </a>
+        <a (click)="prikaziInbox()">
+            <span>
+             Inbox
+            </span>
+        </a><br>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon style="color: white;">logout</mat-icon>
+            <span style="color: white;">Logout</span>
+        </button>
+    </div>
+    <div class="main"><br>
+        <!--<form ngNativeValidate #forma5>
+            <table >
+                <tr>
+                    <td>Unesite staru lozinku:</td>
+                    <td>
+                        <input type="password" name="staraL" [(ngModel)]="staraL" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unesite novu lozinku</td>
+                    <td>
+                        <input type="password" name="nova" [(ngModel)]="nova" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Potvrdi novu lozinku</td>
+                    <td>
+                        <input type="password" name="potvrdiN" [(ngModel)]="potvrdiN" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" (click)="forma5.checkValidity()?promeniLoz():null">Promeni lozinku</button>
+                    </td>
+                </tr>
+            </table>
+        </form>-->
+        <div class="form-style-6">
+            <h1>Promena lozinke</h1>
+            <form ngNativeValidate #forma5>
+            <input type="password" name="staraL" placeholder="Unesite staru lozinku" [(ngModel)]="staraL" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+            <input type="password" name="nova" placeholder="Unesite novu lozinku" [(ngModel)]="nova" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+            <input type="password" name="potvrdiN" placeholder="Potvrdite novu lozinku" [(ngModel)]="potvrdiN" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+             <button (click)="forma5.checkValidity()?promeniLoz():null">Promeni lozinku</button>
+            </form>
+        </div>
+        </div>
+</div>
+<div *ngIf="user.tip=='admin'">
+    <div class="sidebar">
+        <figure class="centrirano" >
+            <img src="/assets/{{user.slika}}" class="avatar" >
+            <br>
+            <figcaption style="color: white; padding-left: 15px;">{{user.ime}} {{user.prezime}}</figcaption>
+        </figure><br>
+        <a  (click)="pocetna()">
+            <span>
+             Pocetna stranica
+            </span>
+        </a>
+        <a  (click)="povecajPodesavanja()">
+            <span>
+             Podesavanja
+            </span>
+        </a>
+        <a (click)="promLoz()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;background-color:rgb(70, 69, 69) ;">
+            <span>
+             Promeni lozinku
+            </span>
+        </a>
+        <a (click)="prikaziFormuZaAzuriranje()" *ngIf="prikaziPodesavanja==1" style="padding-left: 50px;">
+            <span>
+             Azuriraj podatke
+            </span>
+        </a>
+        <a (click)="povecajNekr()">
+            <span>
+             Nekretnine
+            </span>
+        </a>
+        <a (click)="zaOdobri()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Odobri
+            </span>
+        </a>
+        <a (click)="prikazDodaj()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Unesi novu
+            </span>
+        </a>
+        <a (click)="ugovorene()" *ngIf="prikaziNekretnine==1" style="padding-left: 50px;">
+            <span>
+             Ugovorene prodaje
+            </span>
+        </a>
+        <a (click)="povecajKorisnik()">
+            <span>
+                Korisnici
+            </span>
+        </a>
+        <a (click)="dodaj()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Dodaj
+            </span>
+        </a>
+        <a (click)="izmeni()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Izmeni
+            </span>
+        </a>
+        <a (click)="odobriKorisnik()" *ngIf="prikaziKorisnik==1" style="padding-left: 50px;">
+            <span>
+                Odobri
+            </span>
+        </a>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon style="color: white;">logout</mat-icon>
+            <span style="color: white;">Logout</span>
+        </button>
+    </div>
+    <div class="main" ><br>
+      <!-- <form ngNativeValidate #forma5 >
+            <table style="display: grid;justify-content: center;">
+                <tr>
+                    <td>Unesite staru lozinku:</td>
+                    <td>
+                        <input type="password" name="staraL" [(ngModel)]="staraL" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unesite novu lozinku</td>
+                    <td>
+                        <input type="password" name="nova" [(ngModel)]="nova" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Potvrdi novu lozinku</td>
+                    <td>
+                        <input type="password" name="potvrdiN" [(ngModel)]="potvrdiN" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" (click)="forma5.checkValidity()?promeniLoz():null" style="font-size: large;">Promeni lozinku</button>
+                    </td>
+                </tr>
+            </table>
+        </form>--> 
+        <div class="form-style-6">
+            <h1>Promena lozinke</h1>
+            <form ngNativeValidate #forma5>
+            <input type="password" name="staraL" placeholder="Unesite staru lozinku" [(ngModel)]="staraL" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+            <input type="password" name="nova" placeholder="Unesite novu lozinku" [(ngModel)]="nova" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+            <input type="password" name="potvrdiN" placeholder="Potvrdite novu lozinku" [(ngModel)]="potvrdiN" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-_])[A-Za-z\d@$!%*?&-_]{8,24}$">
+             <button (click)="forma5.checkValidity()?promeniLoz():null">Promeni lozinku</button>
+            </form>
+        </div>
+    </div>
+</div>
